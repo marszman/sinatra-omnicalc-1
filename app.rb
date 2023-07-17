@@ -44,5 +44,13 @@ get("/random/new") do
 end
 
 get("/random/results") do
+  @minimum = params.fetch("minimum").to_f
+  @maximum = params.fetch("maximum").to_f
+  if @minimum > @maximum
+    tmp = @minimum
+    @minimum = @maximum
+    @maximum = tmp
+  end
+  @random_number = rand(@minimum..@maximum)
   erb(:random_results)
 end
