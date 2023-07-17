@@ -30,6 +30,12 @@ get("/payment/new") do
 end
 
 get("/payment/results") do
+  @apr = params.fetch("apr").to_f
+  rate = @apr / 1200
+  @period = params.fetch("period").to_f
+  period_months = @period * 12
+  @principal = params.fetch("principal").to_f
+  @pmt = (rate * @principal) / (1 - ((1 + rate)**(-period_months)))
   erb(:payment_results)
 end
 

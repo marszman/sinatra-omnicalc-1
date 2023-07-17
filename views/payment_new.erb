@@ -1,3 +1,17 @@
   <form action="/payment/results">
-    <button>Calculate payment</button>
+    <div>
+      <label for="apr_id">APR</label>
+      <input id="apr_id" type="number" name="apr">
+    </div>
+    <div>
+      <label for="period_id">Number of years</label>
+      <input id="period_id" type="number" name="period">
+    </div>
+    <div>
+      <label for="principal_id">Principal</label>
+      <input id="principal_id" type="number" name="principal">
+    </div>
+    <div>
+      <button>Calculate monthly payment</button>
+    </div>
   </form>
