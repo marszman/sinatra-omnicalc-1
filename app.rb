@@ -10,6 +10,8 @@ get("/square/new") do
 end
 
 get("/square/results") do
+  @number = params.fetch("number").to_f
+  @squared_number = @number**2
   erb(:square_results)
 end
 
