@@ -1,5 +1,6 @@
 require "sinatra"
 require "sinatra/reloader"
+require "active_support/all"
 
 get("/") do
   erb(:landing)
@@ -38,9 +39,10 @@ get("/payment/results") do
 
   pmt = (rate * @principal) / (1 - ((1 + rate)**(-period_months)))
 
-  pmt_rounded = pmt.round(2)
-  @pmt_currency = "$" + pmt_rounded.to_s
-  pp @apr_percent = apr.to_s + "%"
+  pmt_rounded = pmt.round(2).to_f
+  @pmt_currency = pmt_rounded.to_fs(:currency)
+  @apr_percent = apr.round(2)
+  #@apr_percent = apr.round(4).to_fs(:percentage)
   erb(:payment_results)
 end
 
