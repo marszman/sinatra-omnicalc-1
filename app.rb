@@ -42,7 +42,7 @@ get("/payment/results") do
   pmt_rounded = pmt.round(2).to_f
   @pmt_currency = pmt_rounded.to_fs(:currency)
   @principal_currency = principal.to_fs(:currency)
-  @apr_percent = apr.round(4).to_fs(:percentage)
+  @apr_percent = apr.round(4).to_fs(:percentage, { :precision => 4 } )
   erb(:payment_results)
 end
 
