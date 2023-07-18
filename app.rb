@@ -35,14 +35,14 @@ get("/payment/results") do
   rate = apr / 1200
   @period = params.fetch("period").to_f
   period_months = @period * 12
-  @principal = params.fetch("principal").to_f
+  principal = params.fetch("principal").to_f
 
-  pmt = (rate * @principal) / (1 - ((1 + rate)**(-period_months)))
+  pmt = (rate * principal) / (1 - ((1 + rate)**(-period_months)))
 
   pmt_rounded = pmt.round(2).to_f
   @pmt_currency = pmt_rounded.to_fs(:currency)
-  @apr_percent = apr.round(2)
-  #@apr_percent = apr.round(4).to_fs(:percentage)
+  @principal_currency = principal.to_fs(:currency)
+  @apr_percent = apr.round(4).to_fs(:percentage)
   erb(:payment_results)
 end
 
